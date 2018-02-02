@@ -45,6 +45,17 @@ def test_int_cos():
     np.testing.assert_almost_equal(a.to_numpy(), data,
                                    decimal=decimal_accuracy, verbose=verbosity)
 
+def test_int_acos():
+    data = np.array([-1, 0, 1, 1, 2])
+    expected = np.array([3.14159265, 1.57079633, 0, 0, np.nan])
+    a = IntTensor(data)
+    b = a.acos()
+
+    np.testing.assert_almost_equal(b.to_numpy(), expected,
+                                   decimal=decimal_accuracy, verbose=verbosity)
+    # a doesn't change
+    np.testing.assert_almost_equal(a.to_numpy(), data,
+                                   decimal=decimal_accuracy, verbose=verbosity)
 
 def test_int_lt():
     data = np.array([1,2,3,4])
